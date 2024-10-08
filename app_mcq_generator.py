@@ -3,20 +3,13 @@ APP_URL = "https://mcq-wizard.streamlit.app"
 
 APP_TITLE = "MCQ Generator"
 APP_INTRO = """This micro-app allows you to generate multiple-choice questions quickly and consistently. 
-It work with either GPT-3.5 Turbo, GPT-4, or both.
+It can work with any LLM model.
 Optionally, users can modify the AI configuration by opening the left sidebar.
 """
 
 APP_HOW_IT_WORKS = """
  This is an **MCQ Generator** that can create multiple choice questions in different formats and for different subject domains depending on the user's input.
-
-Using AI to provide feedback and score like this is a very experimental process. Some things to note: 
-
- - AIs make mistakes. Users are encourage to skip a question if the AI is not understanding them or giving good feedback. 
- - The AI might say things that it can't do, like "Ask me anything about the article". I presume further refinement can reduce these kinds of responses. 
- - Scoring is highly experimental. At this point, it should mainly be used to gauge if a user gave an approximately close answer to what the rubric suggests. It is not recommended to show the user the numeric score. 
- - Initial testing indicates that the AI is a very easy grader. This is probably good in this experiment, and it may be refined with different prompting. 
- """
+"""
 
 SHARED_ASSET = {
 }
@@ -59,7 +52,7 @@ PHASES = {
             "question_level": {
                 "label": "Question difficulty level:",
                 "type": "selectbox",
-                "options": ['Grade School', 'High School', 'University', 'Other'],
+                "options": ['Grade School', 'High School', 'University'],
                 "index": 2,
             },
             "distractors_num": {
@@ -125,7 +118,16 @@ PHASES = {
             },
             {
                 "condition": {"output_format": "OLX"},
-                "prompt": "Please write your MCQs in Open edX OLX format\n\n"
+                "prompt": """Please write your MCQs in Open edX OLX format\n
+                You can use this template as a guide to the simple editor markdown and OLX markup to use for multiple choice with hints and feedback problems. Edit this component to replace this template with your own assessment.
+>>Add the question text, or prompt, here. This text is required.||You can add an optional tip or note related to the prompt like this. <<
+( ) an incorrect answer {{You can specify optional feedback like this, which appears after this answer is submitted.}}
+(x) the correct answer
+( ) an incorrect answer {{You can specify optional feedback for none, a subset, or all of the answers.}}
+||You can add an optional hint like this. Problems that have a hint include a hint button, and this text appears the first time learners select the button.||
+||If you add more than one hint, a different hint appears each time learners select the hint button.||"""
+
+
             },
             {
                 "condition": {},
