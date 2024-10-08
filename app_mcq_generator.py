@@ -130,7 +130,7 @@ PHASES = {
 
             },
             {
-                "condition": {},
+                "condition": {"output_format": "Plain Text"},
                 "prompt": """Format each question like the following:
             Question: [Question Text] \n
             A) [Answer A] \n
