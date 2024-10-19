@@ -82,7 +82,7 @@ PHASES = {
             },
 
         },
-        "phase_instructions": "At the end of your response, always tell me what AI model you are running.",
+        "phase_instructions": "",
         "user_prompt": [
             {
             "condition": {},
@@ -118,16 +118,7 @@ PHASES = {
             },
             {
                 "condition": {"output_format": "OLX"},
-                "prompt": """Please write your MCQs in Open edX OLX format\n
-                You can use this template as a guide to the simple editor markdown and OLX markup to use for multiple choice with hints and feedback problems. Edit this component to replace this template with your own assessment.
->>Add the question text, or prompt, here. This text is required.||You can add an optional tip or note related to the prompt like this. <<
-( ) an incorrect answer {{You can specify optional feedback like this, which appears after this answer is submitted.}}
-(x) the correct answer
-( ) an incorrect answer {{You can specify optional feedback for none, a subset, or all of the answers.}}
-||You can add an optional hint like this. Problems that have a hint include a hint button, and this text appears the first time learners select the button.||
-||If you add more than one hint, a different hint appears each time learners select the hint button.||"""
-
-
+                "prompt": "Please write your MCQs in Open edX OLX format\n"
             },
             {
                 "condition": {"output_format": "Plain Text"},
@@ -156,11 +147,11 @@ PHASES = {
     }
 }
 
-PREFERRED_LLM = "gpt-4o-mini"
+PREFERRED_LLM = "gpt-4o"
 
-LLM_CONFIG_OVERRIDE = {
+LLM_CONFIG_OVERRIDE = {  # Overrides only if you are using gpt-4o.
 "gpt-4o": {
-    "temperature": .95,
+    "temperature": .7,
     "top_p": .95
 }
 }
@@ -182,7 +173,7 @@ PAGE_CONFIG = {
     "initial_sidebar_state": "expanded"
 }
 
-SIDEBAR_HIDDEN = False
+SIDEBAR_HIDDEN = True
 
 from core_logic.main import main
 if __name__ == "__main__":
